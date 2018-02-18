@@ -14,11 +14,13 @@ class RidesController < ApplicationController
 
   # GET /rides/new
   def new
-    @ride = Ride.new
+    @user = current_user
+    @ride = Ride.new user_id: current_user.id
   end
 
   # GET /rides/1/edit
   def edit
+    @user = @ride.user
   end
 
   # POST /rides
@@ -69,6 +71,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:seats, :destination, :pickup, :departure, :arrival)
+      params.require(:ride).permit(:user_id, :seats, :destination, :pickup, :departure, :arrival)
     end
 end
