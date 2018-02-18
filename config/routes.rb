@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "rides#index"
   resources :rides
+  post 'join_ride/:ride' => 'rides#join_ride', as: 'join_ride'
 
   devise_for :users, controllers: { registrations: 'registrations'}
   get 'users/:id', to: "users#show", as: :view_profile
