@@ -25,7 +25,7 @@
         <td><%= ride.departure %></td>
         <td><%= ride.arrival %></td>
         <td><%= link_to 'View Ride', ride %></td>
-        <% if user_signed_in? and !ride.users.include?(current_user) and ride.available_seats > 0 %>
+        <% if user_signed_in? and !ride.users.include?(current_user) and ride.user != current_user and ride.available_seats > 0 %>
           <td><%= link_to 'Join Ride', join_ride_path(ride), method: :post %></td>
         <% end %>
       </tr>
