@@ -15,7 +15,10 @@ class RidesController < ApplicationController
   # GET /rides/new
   def new
     @user = current_user
-    @ride = Ride.new user_id: current_user.id
+    unless @user.drivers_license.present?
+      redirect_to rides_path, notice: "You need a drivers license to create a ride!"
+    end
+    @ride = Ride.new user_id: @user.id
   end
 
   # GET /rides/1/edit
