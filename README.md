@@ -8,6 +8,7 @@ Web app for people who want to carpool together
 ### Run Locally
 ```
 bundle install
+rake db:setup
 rake db:migrate
 rails server
 ```
